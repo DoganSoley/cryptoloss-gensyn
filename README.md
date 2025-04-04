@@ -25,3 +25,12 @@ Tek kod kurulum :
 ```
 wget https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/script.sh && chmod +x script.sh && ./script.sh
 ```
+
+Kurulum bittikten sonra :
+
+![image](https://github.com/user-attachments/assets/c9070880-34bb-4073-af24-cd4bcad7c63b)
+```
+screen -r gensyn
+```
+ile screen'e girip "Y" yazıp enter yapın.
+![image](https://github.com/user-attachments/assets/09d6e8c1-07a1-4871-a784-ab3387b0be6b)
