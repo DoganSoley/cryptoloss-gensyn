@@ -109,4 +109,4 @@ swarm.pem dosyasını tutup bilgisayarımın masaüstüne atıyorum.
 
 işlemler bu kadar.
 
-[ZUNXBT](https://github.com/zunxbt/gensyn-testnet)'ye Teşekkürler..
+CC : [ZUNXBT](https://github.com/zunxbt/gensyn-testnet)
