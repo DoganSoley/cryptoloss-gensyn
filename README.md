@@ -33,4 +33,5 @@ Kurulum bittikten sonra :
 screen -r gensyn
 ```
 ile screen'e girip "Y" yazıp enter yapın.
+
 ![image](https://github.com/user-attachments/assets/09d6e8c1-07a1-4871-a784-ab3387b0be6b)
