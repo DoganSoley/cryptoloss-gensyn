@@ -35,3 +35,16 @@ screen -r gensyn
 ile screen'e girip "Y" yazıp enter yapın.
 
 ![image](https://github.com/user-attachments/assets/09d6e8c1-07a1-4871-a784-ab3387b0be6b)
+
+![image](https://github.com/user-attachments/assets/9f35814e-6280-4289-9382-5b2472c05c72)
+
+Daha sonra önce "1" yazan linki kopyalayıp tarayıcıya yapıştırıp ngrok sitesine kayıt olun daha sonra "2" yazan linki kopyalayıp tarayıcıya yapıştırın.
+
+Size verdiği "Authtoken"i kopyalayın.
+
+![image](https://github.com/user-attachments/assets/f3a90fcb-ef0e-414d-8ded-7ed7bcc21c15)
+
+Buraya yapıştırıp enterlayın.
+
+![image](https://github.com/user-attachments/assets/46d2eefd-71d0-4612-8140-a510c65bbc38)
+
