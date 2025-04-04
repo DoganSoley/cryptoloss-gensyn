@@ -20,6 +20,11 @@ Sadece RAM veya CPU ile olmuyor bir süre sonra çöküyor model eğitimi olaca�
 
 GPU kiralamak isterseniz : [Quickpod](https://quickpod.io/), [Hyperbolic](https://app.hyperbolic.xyz/) sitelerini veya başka bir yer kullanabilirsiniz.
 
+GPU Haricinde şimdilik [HETZNER](https://www.hetzner.com/dedicated-rootserver/) üzerindeki "AX41" sunucusunda çökmeden çalışıyor isteyen ona kurmayı da deneyebilir.
+
+![image](https://github.com/user-attachments/assets/7b46d5f5-2b2c-4556-96e4-96558eb3b4c4)
+
+
 
 # Kurulum Adımları
  
