@@ -2,6 +2,8 @@
 
 # Gensyn Node Kurulumu
 
+# [Kurulum Videosu](https://www.youtube.com/@Cryptoloss) 
+
 ## Sunucu Gereksinimleri
 
 Minimum 16GB RAM
