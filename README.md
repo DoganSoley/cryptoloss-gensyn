@@ -48,3 +48,11 @@ Buraya yapıştırıp enterlayın.
 
 ![image](https://github.com/user-attachments/assets/46d2eefd-71d0-4612-8140-a510c65bbc38)
 
+Daha sonra size verdiği bu linki kopyalayıp tekrar tarayıcıya yapıştırın.
+
+![image](https://github.com/user-attachments/assets/f8f1bdf2-3a70-446d-a781-cc20e30033a8)
+
+"Visit Site"ye tıklayın.
+
+![image](https://github.com/user-attachments/assets/09703f52-e781-41bb-8c46-ebf2f6e88ebe)
+
