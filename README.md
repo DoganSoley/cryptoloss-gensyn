@@ -20,6 +20,9 @@ Sadece RAM veya CPU ile olmuyor bir süre sonra çöküyor model eğitimi olaca�
 
 GPU kiralamak isterseniz : [Quickpod](https://quickpod.io/), [Hyperbolic](https://app.hyperbolic.xyz/) sitelerini veya başka bir yer kullanabilirsiniz.
 
+
+# Kurulum Adımları
+ 
 Sunucuya bağlandıktan sonra :
 
 Tek kod kurulum :
