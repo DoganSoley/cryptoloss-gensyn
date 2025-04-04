@@ -6,9 +6,9 @@
 
 ## Sunucu Gereksinimleri
 
-Minimum 16GB RAM
+RAM : Minimum 16GB
 
-CPU arm64 veya amd64
+CPU : arm64 veya amd64
 
 Ubuntu 22.04
 
