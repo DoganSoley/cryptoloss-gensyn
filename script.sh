@@ -53,6 +53,8 @@ echo "🚀 Node kuruluyor..."
 cd $HOME/rl-swarm
 screen -dmS gensyn bash -c "python3 -m venv .venv && . .venv/bin/activate && ./run_rl_swarm.sh"
 
+echo -e "${GREEN}CC : ZUNXBT ${NC}"
+
 echo "İşlem tamamlandı."
 
 # 8. CRYPTOLOSS
