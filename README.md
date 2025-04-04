@@ -2,7 +2,7 @@
 
 # Gensyn Node Kurulumu
 
-# [Kurulum Videosu](https://www.youtube.com/@Cryptoloss) 
+# [Kurulum Videosu](https://youtu.be/jZIDwKNVwrU) 
 
 ## Sunucu Gereksinimleri
 
