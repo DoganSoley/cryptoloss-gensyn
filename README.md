@@ -14,6 +14,8 @@ Ubuntu 22.04
 
 GPU : RTX 3090, RTX 4090, A100, H100 (en az 24gb vram ekran kartı)
 
+NOT : Ödül verecekleri kesin değil, açıklanmış net bir teşvik henüz yok ödül verme ihtimallerine karşı kurulum yapıyoruz.
+
 # ÖNEMLİ ! 
 
 Sadece RAM veya CPU ile olmuyor bir süre sonra çöküyor model eğitimi olacağı için ekran kartı şart.Fiyatlar biraz yüksek fakat eğer kendi pc'nizde 24vram ve üzeri ekran kartı varsa [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) ile windows'un altına ubuntu yükleyerek kendi pc'nizde de bu nodeyi çalıştırabilirsiniz.(wsl ile ubuntu nasıl kurulur diye araştırın yanlış birşey yaparsanız pc'niz çökebilir her ihtimale karşı önemli verilerinizi yedekleyin)
