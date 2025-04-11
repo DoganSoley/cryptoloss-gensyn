@@ -4,7 +4,7 @@
 
 # [Kurulum Videosu](https://youtu.be/jZIDwKNVwrU) 
 
-# DİKKAT ! Videodaki kurulumdan sonra güncelleme geldi bazı yerler aynı değil videoda takılırsanız bu rehberi takip ederek kurabilirsiniz. 11 Nisan 2025'den önce kuranlar rehberin en altındaki güncelleme adımlarını takip etsin yeni kuracaklar güncelleme adımlarını yapmasın sıfırdan kurulum şuan güncel.  
+# DİKKAT ! Videodaki kurulumdan sonra güncelleme geldi bazı yerler aynı değil videoda takılırsanız bu rehberi takip ederek kurabilirsiniz. 10 Nisan 2025'den önce kuranlar rehberin en altındaki güncelleme adımlarını takip etsin yeni kuracaklar güncelleme adımlarını yapmasın sıfırdan kurulum şuan güncel.  
 
 ## Sunucu Gereksinimleri
 
