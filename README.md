@@ -113,3 +113,34 @@ CC : [ZUNXBT](https://github.com/zunxbt/gensyn-testnet)
 
 
 # 10 Nisan 2025'den önce kuranlar için güncelleme kodu ;
+
+Sunucuya bağlanıp direkt bu kodu girin
+
+```
+bash <(curl -sSL https://raw.githubusercontent.com/DoganSoley/gensyn-update/refs/heads/main/script.sh)
+```
+
+Yükleme bittikten sonra ;
+
+```
+screen -r gensyn
+```
+
+ile screen'a girin yüklemenin bitmesini bekleyin yine ilk kurulumdaki gibi Hugging Face Hub? diye soracak "N" yazıp enterlayın kendisi çalışmaya başlayacak "Peer ID" aynı olup olmadığını kontrol edin.Daha önce swarm.pem dosyasını ve temp-data klasörünü yedek almadıysanız yukardaki adımları takip ederek alabilirsiniz.
+
+# Yararlı Kodlar :
+
+Eğer screen içerisinde node çalışmadığını görürseniz "ctrl + c" ile durdurun ve aşağıdaki kodları sırasıyla yazarak tekrar çalıştırın.(ctrl + c yaptığınız screen kapanırsa "screen -ls" ile mevcut screen'ları kontrol edin eğer screen silinmişse "screen -S gensyn" ile yeni screen açın ya da screen zaten açık ama giremiyorsanız aşağıdaki screen düzeltme kodunu kullanın)
+
+```
+cd rl-swarm
+```
+```
+python3 -m venv .venv && source .venv/bin/activate && ./run_rl_swarm.sh
+```
+
+Eğer screen'a giremiyorsanız "Attached" hatası alıyorsanız screen'i düzeltmek için ;
+
+```
+screen -d -r gensyn
+```
