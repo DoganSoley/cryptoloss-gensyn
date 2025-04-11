@@ -4,6 +4,8 @@
 
 # [Kurulum Videosu](https://youtu.be/jZIDwKNVwrU) 
 
+# DİKKAT ! Videodaki kurulumdan sonra güncelleme geldi bazı yerler aynı değil videoda takılırsanız bu rehberi takip ederek kurabilirsiniz. 11 Nisan 2025'den önce kuranlar rehberin en altındaki güncelleme adımlarını takip etsin yeni kuracaklar güncelleme adımlarını yapmasın sıfırdan kurulum şuan güncel.  
+
 ## Sunucu Gereksinimleri
 
 RAM : Minimum 16GB
@@ -44,29 +46,10 @@ Kurulum bittikten sonra :
 ```
 screen -r gensyn
 ```
-ile screen'e girip "Y" yazıp enter yapın.
 
-![image](https://github.com/user-attachments/assets/09d6e8c1-07a1-4871-a784-ab3387b0be6b)
+Daha sonra ok işareti ile gösterdiğim linki kopyalayıp tarayıcıya yapıştırın.
 
-![image](https://github.com/user-attachments/assets/9f35814e-6280-4289-9382-5b2472c05c72)
-
-Daha sonra önce "1" yazan linki kopyalayıp tarayıcıya yapıştırıp ngrok sitesine kayıt olun daha sonra "2" yazan linki kopyalayıp tarayıcıya yapıştırın.
-
-Size verdiği "Authtoken"i kopyalayın.
-
-![image](https://github.com/user-attachments/assets/f3a90fcb-ef0e-414d-8ded-7ed7bcc21c15)
-
-Buraya yapıştırıp enterlayın.
-
-![image](https://github.com/user-attachments/assets/46d2eefd-71d0-4612-8140-a510c65bbc38)
-
-Daha sonra size verdiği bu linki kopyalayıp tekrar tarayıcıya yapıştırın.
-
-![image](https://github.com/user-attachments/assets/f8f1bdf2-3a70-446d-a781-cc20e30033a8)
-
-"Visit Site"ye tıklayın.
-
-![image](https://github.com/user-attachments/assets/09703f52-e781-41bb-8c46-ebf2f6e88ebe)
+![image](https://github.com/user-attachments/assets/a0d60a31-36bd-4fee-9c22-ecfd5965a210)
 
 Login'e tıklayın.
 
@@ -91,9 +74,16 @@ Node ekranına dönün ve yüklemenin bitmesini bekleyin.
 
 ![image](https://github.com/user-attachments/assets/d5c8d93f-f616-4a6f-82f9-9362ef495cf7)
 
-![image](https://github.com/user-attachments/assets/77ef7a51-b5b6-47ec-a9b6-85a447d0c6af)
+![image](https://github.com/user-attachments/assets/0ede3839-5890-4f59-b2a0-43390f87785f)
 
-Bu şekilde bir ekran aldıysanız tamamdır Node ID yazan kelimeleri bir yere kaydedin son olarak swarm.pem dosyasını yedekleyelim.
+
+Bu şekilde bir ekran aldıysanız tamamdır Node ID ve Peer ID yazan kelimeleri bir yere kaydedin.
+
+Peer ID'yi telegramda @gensyntrackbot botuna bağlanıp /check peerid yazarak win sayınızı kontrol edebilirsiniz.
+
+![image](https://github.com/user-attachments/assets/7f145839-bf0c-420f-bcbd-f45ca51b58aa)
+
+Son olarak "swarm.pem" dosyasını ve "temp-data" klasörünü yedekleyelim.
 
 [Winscp](https://winscp.net/eng/download.php) uygulamasını açıyorum
 
@@ -101,14 +91,25 @@ Bu şekilde bir ekran aldıysanız tamamdır Node ID yazan kelimeleri bir yere k
 
 Sunucu ip yazıyorum kullanıcı adı root ve sunucu şifremi yazıp oturum aç diyorum.
 
-rl-swarm klasörüne çift tıklayıp giriyorum.
+"rl-swarm" klasörüne çift tıklayıp giriyorum.
 
 ![image](https://github.com/user-attachments/assets/c41b4b7f-3d7a-4780-baf2-e20f43ef7f90)
 
-swarm.pem dosyasını tutup bilgisayarımın masaüstüne atıyorum.
+"swarm.pem" dosyasını tutup bilgisayarımın masaüstüne atıyorum.
 
 ![image](https://github.com/user-attachments/assets/890a8174-d0e2-4350-93c9-bd0a74edcfbf)
+
+Daha sonra "modal-login" klasörüne çift tıklayarak giriyorum.
+
+![image](https://github.com/user-attachments/assets/c0f5ff19-f931-44b9-a8a2-70de75a5ce7a)
+
+"temp-data" klasörünü de aynı şekilde tutup bilgisayarımın masaüstüne atıyorum.
+
+![image](https://github.com/user-attachments/assets/97bf5d8d-f213-4098-8218-05f607256420)
 
 işlemler bu kadar.
 
 CC : [ZUNXBT](https://github.com/zunxbt/gensyn-testnet)
+
+
+# 10 Nisan 2025'den önce kuranlar için güncelleme kodu ;
