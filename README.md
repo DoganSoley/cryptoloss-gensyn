@@ -112,7 +112,7 @@ işlemler bu kadar.
 CC : [ZUNXBT](https://github.com/zunxbt/gensyn-testnet)
 
 
-# 10 Nisan 2025'den önce kuranlar için güncelleme kodu ;
+# Güncelleme kodu ;
 
 Sunucuya bağlanıp direkt bu kodu girin
 
