@@ -47,6 +47,9 @@ Kurulum bittikten sonra :
 screen -r gensyn
 ```
 
+![image](https://github.com/user-attachments/assets/38b215a3-128f-4a5b-b27f-f677f194e2ef)
+
+
 Yüklenmesini bekleyin daha sonra ok işareti ile gösterdiğim linki kopyalayıp tarayıcıya yapıştırın.
 
 ![image](https://github.com/user-attachments/assets/a0d60a31-36bd-4fee-9c22-ecfd5965a210)
