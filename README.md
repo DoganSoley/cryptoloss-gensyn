@@ -60,7 +60,8 @@ screen -r tunnel
 
 tunnel screen'e girin ve url'yi kopyalayıp tarayıcıya yapıştırın 
 
-![image](https://github.com/user-attachments/assets/7de7d553-d278-4bb9-8397-f6287cf41c78)
+![image](https://github.com/user-attachments/assets/26669260-5b17-4d6c-b5db-8cfa8a6fcb68)
+
 
 Sonrasında "password" kısmına sunucu ip adresinizi girin ve "click to submit"e tıklayın.
 
