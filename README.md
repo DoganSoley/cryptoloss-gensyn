@@ -52,7 +52,20 @@ Görseldeki gibi sırasıyla y/a/0.5 yazın.
 
 ">> Waiting for modal userData.json to be created..." yazısını gördükten sonra "CTRL + A + D" ile screen'den çıkın.
 
-![image](https://github.com/user-attachments/assets/a0d60a31-36bd-4fee-9c22-ecfd5965a210)
+![image](https://github.com/user-attachments/assets/1e866785-d042-47de-87ed-2af91b23ca9a)
+
+```
+screen -r tunnel
+```
+
+tunnel screen'e girin ve url'yi kopyalayıp tarayıcıya yapıştırın 
+
+![image](https://github.com/user-attachments/assets/7de7d553-d278-4bb9-8397-f6287cf41c78)
+
+Sonrasında "password" kısmına sunucu ip adresinizi girin ve "click to submit"e tıklayın.
+
+![image](https://github.com/user-attachments/assets/89a36279-fc85-48be-bed1-cf9d81da12c0)
+
 
 Login'e tıklayın.
 
@@ -71,18 +84,26 @@ Testnet'e kayıt yaptık.
 ![image](https://github.com/user-attachments/assets/d0749333-e127-4a5a-92e8-348ed9b3debb)
 
 
-Node ekranına dönün ve yüklemenin bitmesini bekleyin.
+Terminal'e dönün "CTRL + A + D" ile tunnel screen'den çıkın ve tekrar "gensyn" screen'a girin.
 
-Çıkan soruya "N" yazıp enterlayın.
+![image](https://github.com/user-attachments/assets/0343650f-b069-44cd-9045-7ce1fbf542c6)
 
-![image](https://github.com/user-attachments/assets/d5c8d93f-f616-4a6f-82f9-9362ef495cf7)
+```
+screen -r gensyn
+```
+Yüklemenin tamamlanmasını bekleyin ve çıkan Hugging Face sorusuna "N" yazıp enterlayın.
 
-![image](https://github.com/user-attachments/assets/0ede3839-5890-4f59-b2a0-43390f87785f)
+![image](https://github.com/user-attachments/assets/a17230dc-51d6-4d69-bfa2-313b6be1e9a3)
 
 
 Bu şekilde bir ekran aldıysanız tamamdır Node ID ve Peer ID yazan kelimeleri bir yere kaydedin.
 
-Peer ID'yi telegramda @gensyntrackbot botuna bağlanıp /check peerid yazarak win sayınızı kontrol edebilirsiniz.
+Peer ID'yi [buraya](https://gensyn-node.vercel.app/) yazarak rewards sayısınızı kontrol edebilirsiniz.
+![image](https://github.com/user-attachments/assets/c45532f7-f612-46c2-8b65-47d6187d3d49)
+
+Node ID'niz ile de [buraya](https://dashboard.gensyn.ai/) yazarak kontrol edebilirsiniz.
+![image](https://github.com/user-attachments/assets/f250f6d8-6fc9-4ec7-a9ad-550e717731e4)
+
 
 ![image](https://github.com/user-attachments/assets/7f145839-bf0c-420f-bcbd-f45ca51b58aa)
 
