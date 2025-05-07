@@ -98,14 +98,17 @@ Yüklemenin tamamlanmasını bekleyin ve çıkan Hugging Face sorusuna "N" yazı
 
 Bu şekilde bir ekran aldıysanız tamamdır Node ID ve Peer ID yazan kelimeleri bir yere kaydedin.
 
+![image](https://github.com/user-attachments/assets/3a759b8d-8a1d-4709-8855-b4e0a042390d)
+
+
 Peer ID'yi [buraya](https://gensyn-node.vercel.app/) yazarak rewards sayısınızı kontrol edebilirsiniz.
+
 ![image](https://github.com/user-attachments/assets/c45532f7-f612-46c2-8b65-47d6187d3d49)
 
 Node ID'niz ile de [buraya](https://dashboard.gensyn.ai/) yazarak kontrol edebilirsiniz.
+
 ![image](https://github.com/user-attachments/assets/f250f6d8-6fc9-4ec7-a9ad-550e717731e4)
 
-
-![image](https://github.com/user-attachments/assets/7f145839-bf0c-420f-bcbd-f45ca51b58aa)
 
 Son olarak "swarm.pem" dosyasını ve "temp-data" klasörünü yedekleyelim.
 
