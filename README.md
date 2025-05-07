@@ -4,15 +4,15 @@
 
 # [Kurulum Videosu](https://youtu.be/jZIDwKNVwrU) 
 
-# DİKKAT ! Videodaki kurulumdan sonra güncelleme geldi bazı yerler aynı değil videoda takılırsanız bu rehberi takip ederek kurabilirsiniz. Önceden kuranlar rehberin en altındaki güncelleme adımlarını takip etsin yeni kuracaklar güncelleme adımlarını yapmasın sıfırdan kurulum şuan güncel.  
+# DİKKAT ! Videodaki kurulumdan sonra güncelleme geldi bazı yerler aynı değil videoda takılırsanız bu rehberi takip ederek kurabilirsiniz.Şuanda dedicated olarak çalışan sunucu [netcup](https://www.netcup.com/en/server/root-server)'daki RS 4000 G11 daha düşük sunucularda çalışmıyor dedicated olması şart, onda bile arada duruyor yeni güncellemeden sonra ekran kartı biraz şart gibi oldu.
 
 ## Sunucu Gereksinimleri
 
 RAM : Minimum 16GB
 
-CPU : arm64 veya amd64
+CPU : Mininum 12cpu(dedicated) paylaşımlı cpu sunucularda şuan çalışmıyor.
 
-Ubuntu 22.04
+Ubuntu 24.04
 
 GPU : RTX 3090, RTX 4090, A100, H100 (en az 24gb vram ekran kartı)
 
@@ -24,10 +24,9 @@ Sadece RAM veya CPU ile olmuyor bir süre sonra çöküyor model eğitimi olaca�
 
 GPU kiralamak isterseniz : [Quickpod](https://quickpod.io/), [Hyperbolic](https://app.hyperbolic.xyz/) sitelerini veya başka bir yer kullanabilirsiniz.
 
-GPU Haricinde şimdilik [HETZNER](https://www.hetzner.com/dedicated-rootserver/) üzerindeki "AX41" sunucusunda çökmeden çalışıyor isteyen ona kurmayı da deneyebilir.
+GPU Haricinde şimdilik [netcup](https://www.netcup.com/en/server/root-server) üzerindeki "RS 4000 G11" sunucusunda çökmeden çalışıyor isteyen ona kurmayı da deneyebilir.
 
-![image](https://github.com/user-attachments/assets/7b46d5f5-2b2c-4556-96e4-96558eb3b4c4)
-
+![image](https://github.com/user-attachments/assets/12b288f4-0ff4-44e0-a9c2-08f2d2a2e5f9)
 
 
 # Kurulum Adımları
