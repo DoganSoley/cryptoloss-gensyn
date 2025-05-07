@@ -50,7 +50,7 @@ screen -r gensyn
 ```
 Görseldeki gibi sırasıyla y/a/0.5 yazın.(cpu için)
 
-# Eğer ekran kartı kullanıyorsanız y/b/1.5 veya 7 seçin ekran kartı gücünüze göre arttırırsınız.
+Eğer ekran kartı kullanıyorsanız y/b/1.5 veya 7 seçin ekran kartı gücünüze göre arttırırsınız.
 
 ![image](https://github.com/user-attachments/assets/a7b47801-2ddc-4fa7-9420-edcb8e53dfc3)
 
