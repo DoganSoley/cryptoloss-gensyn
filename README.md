@@ -138,8 +138,6 @@ Daha sonra "modal-login" klasörüne çift tıklayarak giriyorum.
 
 işlemler bu kadar.
 
-CC : [ZUNXBT](https://github.com/zunxbt/gensyn-testnet)
-
 
 # Güncelleme kodu ;
 
