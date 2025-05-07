@@ -23,45 +23,65 @@ echo " "
 echo " "
 echo " "
 
-echo "📦 Sunucu güncelleniyor..."
-sudo apt update && sudo apt install -y sudo
+#!/bin/bash
 
-echo "🔧 Gerekli paketler kuruluyor..."
-sudo apt update && sudo apt install -y \
-  python3 python3-venv python3-pip curl wget screen git lsof
+echo "🚀 Gensyn Node Kurulumu Başlıyor..."
+
+# 1. Sunucuyu güncelle
+sudo apt update -y && sudo apt upgrade -y
+
+# 2. Gerekli paketleri kur
+sudo apt install htop ca-certificates zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev tmux iptables curl nvme-cli git wget make jq libleveldb-dev build-essential pkg-config ncdu tar clang bsdmainutils lsb-release libssl-dev libreadline-dev libffi-dev jq gcc screen file unzip lz4 -y
+
+# 3. NVM kur (Node ve npm için)
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+
+# NVM'i tanıt
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc
+echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bashrc
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.profile
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.profile
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bash_profile
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bash_profile
+
+# Yeni terminalde geçerli olması için hemen içeri aktar
+source ~/.bashrc
+
+# 4. Node.js LTS kur
+nvm install --lts
+
+# 5. Python + Yarn kur
+sudo apt update && sudo apt install -y python3 python3-venv python3-pip git yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update && sudo apt install -y yarn
 
-echo "🚀 Gensyn script başlatılıyor..."
-curl -sSL https://raw.githubusercontent.com/zunxbt/installation/main/node.sh | bash
+# 6. RL Swarm repo'yu klonla
+git clone https://github.com/gensyn-ai/rl-swarm.git && cd rl-swarm
 
-echo "📁 Repo klonlanıyor..."
-cd $HOME
-[ -d rl-swarm ] && rm -rf rl-swarm
-git clone https://github.com/zunxbt/rl-swarm.git
-cd rl-swarm
-
-echo "🛠️ Orijinal hivemind_exp klasörü güncelleniyor..."
-rm -rf hivemind_exp
-git clone --depth 1 https://github.com/gensyn-ai/rl-swarm.git temp-gensyn
-cp -r temp-gensyn/hivemind_exp .
-rm -rf temp-gensyn
-
-echo "📦 Yarn güncelleniyor..."
+# 7. modal-login içinde güncellemeleri yap
 cd modal-login
-yarn install
 yarn upgrade
 yarn add next@latest
 yarn add viem@latest
+cd ..
 
-echo "🚀 Node kuruluyor..."
-cd $HOME/rl-swarm
-screen -dmS gensyn bash -c "python3 -m venv .venv && . .venv/bin/activate && ./run_rl_swarm.sh"
+# 8. localtunnel kur
+npm install -g localtunnel
 
-echo -e "${GREEN}CC : ZUNXBT ${NC}"
+# 9. Tunnel screen oluştur ve çalıştır
+screen -dmS tunnel lt --port 3000
 
-echo "İşlem tamamlandı."
+# 10. Gensyn screen oluştur ve çalıştır
+screen -dmS gensyn bash -c "python3 -m venv .venv && source .venv/bin/activate && ./run_rl_swarm.sh"
+
+echo "✅ Kurulum tamamlandı."
+
 
 # 8. CRYPTOLOSS
 echo " "
@@ -81,4 +101,5 @@ echo -e "${GREEN}Gensyn Node kurulumu tamamlandı.${NC}"
 echo " "
 echo -e "${GREEN}Sorularınız için ${NC}""${YELLOW}t.me/CryptolossChat${NC}""${GREEN} telegram kanalına gelebilirsiniz.${NC}"
 echo " "
-echo -e "${GREEN}Node çalıştırmak için : ${NC}""${YELLOW}screen -r gensyn${NC}"
+echo -e "${GREEN}Node kuruluma devam etmek için : ${NC}""${YELLOW}screen -r gensyn${NC}"
+echo -e "${GREEN}Mail ile kayıt olmak için : ${NC}""${YELLOW}screen -r tunnel${NC}"
