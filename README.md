@@ -98,7 +98,7 @@ Yüklemenin tamamlanmasını bekleyin ve çıkan Hugging Face sorusuna "N" yazı
 
 Bu şekilde bir ekran aldıysanız tamamdır Node ID ve Peer ID yazan kelimeleri bir yere kaydedin.
 
-![image](https://github.com/user-attachments/assets/3a759b8d-8a1d-4709-8855-b4e0a042390d)
+![image](https://github.com/user-attachments/assets/c387d10b-c1f7-44aa-9136-6399ca9e5523)
 
 
 Peer ID'yi [buraya](https://gensyn-node.vercel.app/) yazarak rewards sayısınızı kontrol edebilirsiniz.
