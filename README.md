@@ -42,15 +42,15 @@ wget https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/m
 
 Kurulum bittikten sonra :
 
-![image](https://github.com/user-attachments/assets/c9070880-34bb-4073-af24-cd4bcad7c63b)
+![image](https://github.com/user-attachments/assets/79ae0b2b-c596-4df5-9aa8-69eefd604085)
+
 ```
 screen -r gensyn
 ```
+Görseldeki gibi sırasıyla y/a/0.5 yazın.
+![image](https://github.com/user-attachments/assets/4d2d340f-7339-4ec4-9257-5dc6dc293062)
 
-![image](https://github.com/user-attachments/assets/38b215a3-128f-4a5b-b27f-f677f194e2ef)
-
-
-Yüklenmesini bekleyin daha sonra ok işareti ile gösterdiğim linki kopyalayıp tarayıcıya yapıştırın.
+">> Waiting for modal userData.json to be created..." yazısını gördükten sonra "CTRL + A + D" ile screen'den çıkın.
 
 ![image](https://github.com/user-attachments/assets/a0d60a31-36bd-4fee-9c22-ecfd5965a210)
 
