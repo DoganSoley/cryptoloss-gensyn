@@ -142,21 +142,6 @@ Daha sonra "modal-login" klasörüne çift tıklayarak giriyorum.
 işlemler bu kadar.
 
 
-# Güncelleme kodu ;
-
-Sunucuya bağlanıp direkt bu kodu girin
-
-```
-gelecek..
-```
-
-Yükleme bittikten sonra ;
-
-```
-screen -r gensyn
-```
-
-ile screen'a girin yüklemenin bitmesini bekleyin yine ilk kurulumdaki gibi Hugging Face Hub? diye soracak "N" yazıp enterlayın kendisi çalışmaya başlayacak "Peer ID" güncellemeden öncekiyle aynı olup olmadığını kontrol edin.Daha önce swarm.pem dosyasını ve temp-data klasörünü yedek almadıysanız yukardaki adımları takip ederek alabilirsiniz.
 
 # Yararlı Kodlar :
 
