@@ -6,7 +6,6 @@
 
 # DİKKAT ! Videodaki kurulumdan sonra güncelleme geldi bazı yerler aynı değil videoda takılırsanız bu rehberi takip ederek kurabilirsiniz.Şuanda dedicated olarak çalışan sunucu [netcup](https://www.netcup.com/en/server/root-server)'daki RS 4000 G11 daha düşük sunucularda çalışmıyor dedicated olması şart, onda bile arada duruyor yeni güncellemeden sonra ekran kartı biraz şart gibi oldu.
 
-# Bu kurulum ile ekran kartıyla da çalıştırabilirsiniz sadece cpu kurulumu değil.Aşağıda kurulum sırasında "ekran kartı kullanıyorsanız" diye belirtiyorum seçerken.
 
 ## Sunucu Gereksinimleri
 
@@ -48,9 +47,7 @@ Kurulum bittikten sonra :
 ```
 screen -r gensyn
 ```
-Görseldeki gibi sırasıyla y/a/0.5 yazın.(cpu için)
-
-Eğer ekran kartı kullanıyorsanız y/b/1.5 veya 7 seçin ekran kartı gücünüze göre arttırırsınız.
+Görseldeki gibi sırasıyla y/a/0.5 yazın.
 
 ![image](https://github.com/user-attachments/assets/a7b47801-2ddc-4fa7-9420-edcb8e53dfc3)
 
