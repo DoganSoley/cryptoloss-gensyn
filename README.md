@@ -48,7 +48,7 @@ Kurulum bittikten sonra :
 screen -r gensyn
 ```
 Görseldeki gibi sırasıyla y/a/0.5 yazın.
-![image](https://github.com/user-attachments/assets/4d2d340f-7339-4ec4-9257-5dc6dc293062)
+![image](https://github.com/user-attachments/assets/a7b47801-2ddc-4fa7-9420-edcb8e53dfc3)
 
 ">> Waiting for modal userData.json to be created..." yazısını gördükten sonra "CTRL + A + D" ile screen'den çıkın.
 
