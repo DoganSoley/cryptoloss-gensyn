@@ -10,7 +10,7 @@
 
 ## Sunucu Gereksinimleri
 
-RAM : Minimum 16GB
+RAM : Minimum 32GB ( node en az 20-22gb kullanıyor )
 
 CPU : Mininum 12cpu(dedicated) paylaşımlı cpu sunucularda şuan çalışmıyor ya da çok yavaş çalışıyor.
 
