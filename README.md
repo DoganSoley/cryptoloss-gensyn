@@ -10,7 +10,7 @@
 
 RAM : Minimum 16GB
 
-CPU : Mininum 12cpu(dedicated) paylaşımlı cpu sunucularda şuan çalışmıyor.
+CPU : Mininum 12cpu(dedicated) paylaşımlı cpu sunucularda şuan çalışmıyor ya da çok yavaş çalışıyor.
 
 Ubuntu 24.04
 
