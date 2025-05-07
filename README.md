@@ -103,11 +103,11 @@ Bu şekilde bir ekran aldıysanız tamamdır Node ID ve Peer ID yazan kelimeleri
 
 Peer ID'yi [buraya](https://gensyn-node.vercel.app/) yazarak rewards sayısınızı kontrol edebilirsiniz.
 
-![image](https://github.com/user-attachments/assets/c45532f7-f612-46c2-8b65-47d6187d3d49)
+![image](https://github.com/user-attachments/assets/b60bb097-b3d0-4bf8-bdb1-431d3235dde9)
 
 Node ID'niz ile de [buraya](https://dashboard.gensyn.ai/) yazarak kontrol edebilirsiniz.
 
-![image](https://github.com/user-attachments/assets/f250f6d8-6fc9-4ec7-a9ad-550e717731e4)
+![image](https://github.com/user-attachments/assets/322f2718-ce77-4536-b543-8dea4d946da6)
 
 
 Son olarak "swarm.pem" dosyasını ve "temp-data" klasörünü yedekleyelim.
@@ -144,7 +144,7 @@ CC : [ZUNXBT](https://github.com/zunxbt/gensyn-testnet)
 Sunucuya bağlanıp direkt bu kodu girin
 
 ```
-bash <(curl -sSL https://raw.githubusercontent.com/DoganSoley/gensyn-update/refs/heads/main/script.sh)
+gelecek..
 ```
 
 Yükleme bittikten sonra ;
