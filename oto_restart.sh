@@ -2,29 +2,54 @@
 
 cd ~/rl-swarm || exit 1
 
+# LOG dosyasını sıfırla
+> node_output.log
+
+# Sanal ortamı aktifleştir
+source .venv/bin/activate
+
 while true; do
-  echo "🔁 Gensyn node başlatılıyor... Zaman: $(date)"
-  
-  # Ortamı hazırla
-  python3 -m venv .venv
-  source .venv/bin/activate
+  echo "🔁 Gensyn node başlatılıyor: $(date)"
 
+  # run_rl_swarm.sh çalıştırılır, çıktılar log dosyasına aktarılır
   (
-    # Başlangıç sorularına otomatik yanıt ver
     printf 'y\na\n0.5\n'
-
-    # 30 saniye sonra temp-data klasörünü kopyala
-    sleep 30
-    echo "📦 temp-data klasörü kopyalanıyor..."
-    rm -rf modal-login/temp-data
-    cp -r temp-data modal-login/
-    echo "✅ Kopyalama tamamlandı."
-
-    # Ardından 90 saniye bekle, HuggingFace sorusuna 'N' de
     sleep 90
     printf 'N\n'
-  ) | ./run_rl_swarm.sh
+  ) | ./run_rl_swarm.sh 2>&1 | tee node_output.log &
 
-  echo "❌ Node kapandı. 60 saniye sonra yeniden başlatılacak..."
+  NODE_PID=$!
+
+  # 15 saniye bekle, sonra userData.json kopyala
+  sleep 15
+  if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
+    echo "✅ userData.json kopyalandı."
+  else
+    echo "❌ userData.json kopyalanamadı."
+  fi
+
+  # 20 saniye daha bekle, sonra userApiKey.json kopyala
+  sleep 20
+  if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
+    echo "✅ userApiKey.json kopyalandı."
+  else
+    echo "❌ userApiKey.json kopyalanamadı."
+  fi
+
+  # API Key bekleme kontrolü
+  while kill -0 $NODE_PID 2>/dev/null; do
+    sleep 10
+
+    COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
+
+    if [ "$COUNT" -ge 15 ]; then
+      echo "🚨 API key aktivasyonu 15+ kez denendi. Node yeniden başlatılıyor..."
+      kill $NODE_PID
+      wait $NODE_PID 2>/dev/null
+      break
+    fi
+  done
+
+  echo "❌ Node kapandı. Bekleniyor... $(date)"
   sleep 60
 done
