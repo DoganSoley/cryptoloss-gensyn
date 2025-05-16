@@ -64,6 +64,10 @@ sudo apt update && sudo apt install -y yarn
 # 6. RL Swarm repo'yu klonla
 git clone https://github.com/gensyn-ai/rl-swarm.git && cd rl-swarm
 
+# 📁 Dosya güncellemeleri
+curl -L https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/page.tsx -o modal-login/app/page.tsx
+curl -L https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/grpo_runner.py -o hivemind_exp/runner/grpo_runney.py
+
 # 7. modal-login içinde güncellemeleri yap
 cd modal-login
 yarn upgrade
