@@ -159,7 +159,7 @@ screen -d -r gensyn
 
 # Otomatik Restart
 
-Node her durduğunda kendi kendine geri başlaması için otoscript kodu :
+Node her durduğunda kendi kendine geri başlaması için otorestart kodu :
 
 Bu kodu çalıştırmadan önce "rl-swarm" klasörünün içerisine "temp-data" klasörünü atın.(modal-login içerisine değil karıştırmayın)
 
