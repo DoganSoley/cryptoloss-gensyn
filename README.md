@@ -156,3 +156,16 @@ Eğer screen'a giremiyorsanız "Attached" hatası alıyorsanız screen'i düzelt
 ```
 screen -d -r gensyn
 ```
+
+# Otomatik Restart
+
+Node her durduğunda kendi kendine geri başlaması için otoscript kodu :
+
+Bu kodu çalıştırmadan önce "rl-swarm" klasörünün içerisine "temp-data" klasörünü atın.(modal-login içerisine değil karıştırmayın)
+
+Gensyn screen'indeyken ve rl-swarm klasöründeyken aşağıdaki kodu yapıştırın :
+
+```
+curl -s https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/oto_restart.sh | bash
+```
+
