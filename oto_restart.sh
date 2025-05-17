@@ -2,6 +2,9 @@
 
 cd ~/rl-swarm || exit 1
 
+# modal-login/temp-data klasörü yoksa oluştur
+mkdir -p modal-login/temp-data
+
 # LOG dosyasını sıfırla
 > node_output.log
 
