@@ -8,9 +8,6 @@ cd ~/rl-swarm || exit 1
 # Sanal ortamı aktifleştir
 source .venv/bin/activate
 
-# Klasör yoksa başta oluştur
-mkdir -p modal-login/temp-data
-
 while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
 
@@ -18,29 +15,32 @@ while true; do
   (
     printf 'y\na\n0.5\n'
     sleep 90
+
+    # Klasörü kontrol et (yoksa oluştur)
+    mkdir -p modal-login/temp-data
+
+    # userData.json kopyala
+    if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
+      echo "✅ userData.json kopyalandı."
+    else
+      echo "❌ userData.json kopyalanamadı."
+    fi
+
+    # 3 saniye bekle
+    sleep 3
+
+    # userApiKey.json kopyala
+    if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
+      echo "✅ userApiKey.json kopyalandı."
+    else
+      echo "❌ userApiKey.json kopyalanamadı."
+    fi
+
+    # Bitirme için input gönder
     printf 'N\n'
   ) | ./run_rl_swarm.sh 2>&1 | tee node_output.log &
 
   NODE_PID=$!
-
-  # 15 saniye bekle, sonra userData.json kopyala
-  sleep 15
-
-  if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
-    echo "✅ userData.json kopyalandı."
-  else
-    echo "❌ userData.json kopyalanamadı."
-  fi
-
-  # 3 saniye bekle
-  sleep 3
-
-  # userApiKey.json kopyala
-  if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
-    echo "✅ userApiKey.json kopyalandı."
-  else
-    echo "❌ userApiKey.json kopyalanamadı."
-  fi
 
   # API Key bekleme kontrolü
   while kill -0 $NODE_PID 2>/dev/null; do
