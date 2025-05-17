@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Her başlatıldığında eski log dosyasını sil
+rm -f ~/rl-swarm/node_output.log
+
 cd ~/rl-swarm || exit 1
 
 # CTRL+C sinyali gelirse tüm alt süreçleri öldür ve çık
@@ -20,14 +23,14 @@ mkdir -p modal-login/temp-data
 while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
 
-  # Her başlatmada log dosyasını temizle
+  # Her döngü başında log'u sıfırla
   > node_output.log
 
   (
-    # 1. Giriş adımları gönder
+    # 1. Giriş bilgilerini sırayla gönder
     printf 'y\na\n0.5\n'
 
-    # 2. userData.json logunu bekle
+    # 2. Logta userData mesajını bekle
     echo "⌛ userData.json oluşturulması bekleniyor..."
     while ! grep -q "Waiting for modal userData.json to be created..." node_output.log; do
       sleep 1
@@ -59,9 +62,10 @@ while true; do
 
   NODE_PID=$!
 
-  # API Key aktivasyonu 15 kez denendi mi kontrol et
+  # API Key aktivasyon kontrolü
   while kill -0 $NODE_PID 2>/dev/null; do
     sleep 10
+
     COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
 
     if [ "$COUNT" -ge 15 ]; then
