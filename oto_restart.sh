@@ -2,47 +2,48 @@
 
 cd ~/rl-swarm || exit 1
 
+# CTRL+C yakalayıp tüm alt işlemleri durdur
+trap 'echo "🛑 Durduruluyor..."; kill 0; exit' SIGINT
+
 # LOG dosyasını sıfırla
 > node_output.log
 
 # Sanal ortamı aktifleştir
 source .venv/bin/activate
 
+# temp-data klasörünü başta bir kez oluştur
+mkdir -p modal-login/temp-data
+
 while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
 
-  # run_rl_swarm.sh çalıştırılır, çıktılar log dosyasına aktarılır
   (
+    # 1. Node başlatma adımları
     printf 'y\na\n0.5\n'
     sleep 90
 
-    # Klasörü kontrol et (yoksa oluştur)
-    mkdir -p modal-login/temp-data
-
-    # userData.json kopyala
+    # 2. Dosya kopyalama işlemleri
     if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
       echo "✅ userData.json kopyalandı."
     else
       echo "❌ userData.json kopyalanamadı."
     fi
 
-    # 3 saniye bekle
     sleep 3
 
-    # userApiKey.json kopyala
     if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
       echo "✅ userApiKey.json kopyalandı."
     else
       echo "❌ userApiKey.json kopyalanamadı."
     fi
 
-    # Bitirme için input gönder
+    # 3. Gensyn başlatma işlemini tamamla
     printf 'N\n'
   ) | ./run_rl_swarm.sh 2>&1 | tee node_output.log &
 
   NODE_PID=$!
 
-  # API Key bekleme kontrolü
+  # API key aktivasyon kontrolü
   while kill -0 $NODE_PID 2>/dev/null; do
     sleep 10
 
