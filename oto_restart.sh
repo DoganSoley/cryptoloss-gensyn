@@ -2,6 +2,15 @@
 
 cd ~/rl-swarm || exit 1
 
+# CTRL+C sinyali gelirse tüm alt süreçleri öldür ve çık
+trap_ctrl_c() {
+  echo "🛑 CTRL+C alındı. Tüm süreçler sonlandırılıyor..."
+  pkill -P $$
+  kill 0
+  exit
+}
+trap trap_ctrl_c SIGINT
+
 # modal-login/temp-data klasörü yoksa oluştur
 mkdir -p modal-login/temp-data
 
