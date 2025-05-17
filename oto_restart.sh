@@ -57,5 +57,5 @@ while true; do
   done
 
   echo "❌ Node kapandı. Bekleniyor... $(date)"
-  sleep 20
+  sleep 5
 done
