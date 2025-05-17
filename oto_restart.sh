@@ -43,10 +43,21 @@ while true; do
     COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
 
     if [ "$COUNT" -ge 15 ]; then
-      echo "🚨 API key aktivasyonu 15+ kez denendi. Node yeniden başlatılıyor..."
+      echo "🚨 API key aktivasyonu 15+ kez denendi. Node resetlenecek..."
+
+      # Süreci öldür
       kill $NODE_PID
       wait $NODE_PID 2>/dev/null
-      break
+
+      # 🔥 temp-data klasörünü temizle
+      echo "🧹 modal-login/temp-data klasörü siliniyor..."
+      rm -rf modal-login/temp-data
+
+      echo "⏳ 30 saniye bekleniyor, sonra yeniden başlatılıyor..."
+      sleep 30
+
+      # 🔁 Script kendini yeniden başlatıyor
+      exec "$0"
     fi
   done
 
