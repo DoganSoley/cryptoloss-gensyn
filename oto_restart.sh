@@ -24,29 +24,28 @@ while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
 
   (
-    # 1. Gensyn giriş bilgileri ver
+    # 1. Giriş bilgilerini gönder
     printf 'y\na\n0.5\n'
-    sleep 90
 
-    # 2. userData.json kopyala
+    # 2. Dosya kopyalama işlemleri (Hemen)
     if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
       echo "✅ userData.json kopyalandı."
     else
       echo "❌ userData.json kopyalanamadı."
     fi
 
-    # 3 saniye bekle
-    sleep 3
+    sleep 1
 
-    # 3. userApiKey.json kopyala
     if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
       echo "✅ userApiKey.json kopyalandı."
     else
       echo "❌ userApiKey.json kopyalanamadı."
     fi
 
-    # 4. Gensyn'e devam etmek için N gir
+    # 3 saniye tamamlandıysa devam sinyali ver
+    sleep 1
     printf 'N\n'
+
   ) | ./run_rl_swarm.sh 2>&1 | tee node_output.log &
 
   NODE_PID=$!
