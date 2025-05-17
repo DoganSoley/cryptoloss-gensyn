@@ -8,6 +8,9 @@ cd ~/rl-swarm || exit 1
 # Sanal ortamı aktifleştir
 source .venv/bin/activate
 
+# Klasör yoksa başta oluştur
+mkdir -p modal-login/temp-data
+
 while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
 
@@ -23,21 +26,16 @@ while true; do
   # 15 saniye bekle, sonra userData.json kopyala
   sleep 15
 
-  # Klasör yoksa oluştur
-  mkdir -p modal-login/temp-data
-
   if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
     echo "✅ userData.json kopyalandı."
   else
     echo "❌ userData.json kopyalanamadı."
   fi
 
-  # 20 saniye daha bekle, sonra userApiKey.json kopyala
-  sleep 20
+  # 3 saniye bekle
+  sleep 3
 
-  # Klasör yoksa tekrar kontrol (güvenli)
-  mkdir -p modal-login/temp-data
-
+  # userApiKey.json kopyala
   if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
     echo "✅ userApiKey.json kopyalandı."
   else
@@ -59,5 +57,5 @@ while true; do
   done
 
   echo "❌ Node kapandı. Bekleniyor... $(date)"
-  sleep 60
+  sleep 20
 done
