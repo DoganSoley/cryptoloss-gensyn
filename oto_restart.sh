@@ -23,7 +23,7 @@ while true; do
   # 15 saniye bekle, sonra userData.json kopyala
   sleep 15
 
-  # Eğer modal-login/temp-data yoksa oluştur
+  # Klasör yoksa oluştur
   mkdir -p modal-login/temp-data
 
   if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
@@ -35,7 +35,7 @@ while true; do
   # 20 saniye daha bekle, sonra userApiKey.json kopyala
   sleep 20
 
-  # Yine klasörü kontrol et (güvenli olsun diye)
+  # Klasör yoksa tekrar kontrol (güvenli)
   mkdir -p modal-login/temp-data
 
   if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
