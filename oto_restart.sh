@@ -2,7 +2,6 @@
 
 cd ~/rl-swarm || exit 1
 
-# CTRL+C sinyali gelirse tüm alt süreçleri öldür ve çık
 trap_ctrl_c() {
   echo "🛑 CTRL+C alındı. Tüm süreçler sonlandırılıyor..."
   pkill -P $$
@@ -11,30 +10,35 @@ trap_ctrl_c() {
 }
 trap trap_ctrl_c SIGINT
 
-# LOG dosyasını sıfırla
 > node_output.log
-
-# Sanal ortamı aktifleştir
 source .venv/bin/activate
 
-# modal-login/temp-data klasörünü başta oluştur
 mkdir -p modal-login/temp-data
 
 while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
 
   (
-    # 1. Giriş bilgilerini gönder
+    # 1. Giriş adımları
     printf 'y\na\n0.5\n'
 
-    # 2. Dosya kopyalama işlemleri (Hemen)
+    # 2. Logta userData mesajını bekle
+    echo "⌛ userData.json oluşturulması bekleniyor..."
+
+    while ! grep -q "Waiting for modal userData.json to be created..." node_output.log; do
+      sleep 1
+    done
+
+    echo "✅ userData logu bulundu, dosya kopyalamaya geçiliyor..."
+
+    # 3. Dosyaları sırayla kopyala
     if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
       echo "✅ userData.json kopyalandı."
     else
       echo "❌ userData.json kopyalanamadı."
     fi
 
-    sleep 1
+    sleep 2
 
     if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
       echo "✅ userApiKey.json kopyalandı."
@@ -42,7 +46,6 @@ while true; do
       echo "❌ userApiKey.json kopyalanamadı."
     fi
 
-    # 3 saniye tamamlandıysa devam sinyali ver
     sleep 1
     printf 'N\n'
 
@@ -50,10 +53,8 @@ while true; do
 
   NODE_PID=$!
 
-  # API key aktivasyon kontrolü
   while kill -0 $NODE_PID 2>/dev/null; do
     sleep 10
-
     COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
 
     if [ "$COUNT" -ge 15 ]; then
