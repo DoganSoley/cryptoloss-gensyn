@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Her başlatıldığında eski log dosyasını sil
 rm -f ~/rl-swarm/node_output.log
 
 cd ~/rl-swarm || exit 1
 
-# CTRL+C sinyali gelirse tüm alt süreçleri öldür ve çık
+# CTRL+C yakala ve tüm child process'leri öldür
 trap_ctrl_c() {
   echo "🛑 CTRL+C alındı. Tüm süreçler sonlandırılıyor..."
   pkill -P $$
@@ -14,64 +13,65 @@ trap_ctrl_c() {
 }
 trap trap_ctrl_c SIGINT
 
-# Sanal ortamı aktifleştir
 source .venv/bin/activate
-
-# modal-login/temp-data klasörünü başta oluştur
 mkdir -p modal-login/temp-data
 
 while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
-
-  # Her döngü başında log'u sıfırla
   > node_output.log
 
-  (
-    # 1. Giriş bilgilerini sırayla gönder
-    printf 'y\na\n0.5\n'
+  # Başlat ve logu ayrı bir thread’de takip et
+  {
+    ./run_rl_swarm.sh 2>&1 | tee node_output.log
+  } &
+  NODE_PID=$!
 
-    # 2. Logta userData mesajını bekle
-    echo "⌛ userData.json oluşturulması bekleniyor..."
-    while ! grep -q "Waiting for modal userData.json to be created..." node_output.log; do
+  (
+    echo "y"
+    sleep 1
+    echo "a"
+    sleep 1
+    echo "0.5"
+  ) | tee >(cat >&1) > >(cat > input_pipe.txt) > /proc/$NODE_PID/fd/0 &
+
+  # userData.json mesajı bekleniyor
+  echo "⌛ Logta modal userData.json mesajı bekleniyor..."
+  while ! grep -q "Waiting for modal userData.json to be created..." node_output.log; do
+    sleep 1
+  done
+
+  echo "✅ Mesaj bulundu, 2 saniye bekleniyor..."
+  sleep 2
+
+  # Dosyalar gerçekten var mı kontrol et → sonra sırayla kopyala
+  for FILE in userData.json userApiKey.json; do
+    while [ ! -f "temp-data/$FILE" ]; do
+      echo "⏳ temp-data/$FILE henüz yok, bekleniyor..."
       sleep 1
     done
 
-    echo "✅ userData logu bulundu, 2 saniye bekleniyor..."
-    sleep 2
-
-    # 3. userData.json kopyala
-    if cp -f temp-data/userData.json modal-login/temp-data/userData.json; then
-      echo "✅ userData.json kopyalandı."
-    else
-      echo "❌ userData.json kopyalanamadı."
-    fi
-
-    # 4. userApiKey.json kopyala (2 saniye sonra)
-    sleep 2
-    if cp -f temp-data/userApiKey.json modal-login/temp-data/userApiKey.json; then
-      echo "✅ userApiKey.json kopyalandı."
-    else
-      echo "❌ userApiKey.json kopyalanamadı."
-    fi
-
-    # 5. Eğitim başlasın
+    cp -f "temp-data/$FILE" "modal-login/temp-data/$FILE" && echo "✅ $FILE kopyalandı." || echo "❌ $FILE kopyalanamadı."
     sleep 1
-    printf 'N\n'
+  done
 
-  ) | ./run_rl_swarm.sh 2>&1 | tee node_output.log &
+  # Son olarak N gönder
+  echo "N" > /proc/$NODE_PID/fd/0
 
-  NODE_PID=$!
+  # API key bekleme sayaçlı kontrol (yalnızca yeni satırlar için)
+  ACTIVATION_COUNT=0
+  tail -n 0 -F node_output.log | while read -r line; do
+    if echo "$line" | grep -q "Waiting for API key to be activated..."; then
+      ACTIVATION_COUNT=$((ACTIVATION_COUNT + 1))
+      echo "🔄 API aktivasyon sayısı: $ACTIVATION_COUNT"
+    fi
 
-  # API Key aktivasyon kontrolü
-  while kill -0 $NODE_PID 2>/dev/null; do
-    sleep 10
-
-    COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
-
-    if [ "$COUNT" -ge 15 ]; then
-      echo "🚨 API key aktivasyonu 15+ kez denendi. Node yeniden başlatılıyor..."
+    if [ "$ACTIVATION_COUNT" -ge 15 ]; then
+      echo "🚨 15+ kez denendi. Node restart ediliyor..."
       kill $NODE_PID
-      wait $NODE_PID 2>/dev/null
+      break
+    fi
+
+    if ! kill -0 $NODE_PID 2>/dev/null; then
       break
     fi
   done
