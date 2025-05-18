@@ -8,6 +8,7 @@ trap_ctrl_c() {
   pkill -9 -f train_single_gpu.py
   pkill -9 -f p2pd
   pkill -P $$
+  sleep 2
   kill 0
   exit
 }
@@ -57,16 +58,16 @@ while true; do
     COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
 
     if [ "$COUNT" -ge 15 ]; then
-      echo "🚨 API key aktivasyonu 15+ kez denendi. Node manuel gibi yeniden başlatılıyor..."
+      echo "🚨 API key aktivasyonu 15+ kez denendi."
 
-      # Tüm süreçleri öldür
+      # Tüm süreçleri anında öldür
       pkill -9 -f train_single_gpu.py
       pkill -9 -f p2pd
       pkill -P $NODE_PID
       kill -9 $NODE_PID 2>/dev/null
 
       # 1 saniye sonra kendini yeniden başlat
-      echo "🔄 Kendini yeniden başlatıyor..."
+      echo "🔄 Node kendini yeniden başlatıyor..."
       (sleep 1 && curl -s https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/oto_restart.sh | bash) &
 
       exit
