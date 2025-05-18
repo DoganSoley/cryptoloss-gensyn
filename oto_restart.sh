@@ -57,15 +57,19 @@ while true; do
     COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
 
     if [ "$COUNT" -ge 15 ]; then
-      echo "🚨 API key aktivasyonu 15+ kez denendi. Node yeniden başlatılıyor..."
+      echo "🚨 API key aktivasyonu 15+ kez denendi. Node manuel gibi yeniden başlatılıyor..."
 
-      # Tüm ilgili süreçleri anında öldür
+      # Tüm süreçleri öldür
       pkill -9 -f train_single_gpu.py
       pkill -9 -f p2pd
       pkill -P $NODE_PID
       kill -9 $NODE_PID 2>/dev/null
 
-      break
+      # 1 saniye sonra kendini yeniden başlat
+      echo "🔄 Kendini yeniden başlatıyor..."
+      (sleep 1 && curl -s https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/oto_restart.sh | bash) &
+
+      exit
     fi
   done
 
