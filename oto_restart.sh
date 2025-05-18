@@ -51,6 +51,11 @@ while true; do
     echo "❌ userApiKey.json kopyalanamadı."
   fi
 
+  # 10 saniye bekle ve log'u sıfırla
+  echo "🕓 Dosya tanınması için 10 saniye bekleniyor..."
+  sleep 10
+  > node_output.log
+
   # API Key bekleme kontrolü
   while kill -0 $NODE_PID 2>/dev/null; do
     sleep 10
@@ -64,7 +69,7 @@ while true; do
       echo "🕓 5 saniye bekleniyor (manuel durdurma gibi)..."
       sleep 5
 
-      # Tüm süreçleri CTRL+C gibi kapat
+      # Süreçleri manuel gibi öldür
       echo "🛑 Süreçler manuel gibi durduruluyor..."
       pkill -9 -f train_single_gpu.py
       pkill -9 -f p2pd
@@ -72,7 +77,7 @@ while true; do
       kill -9 $NODE_PID 2>/dev/null
 
       # 5 saniye daha bekle, sonra yeniden başlat
-      echo "🔄 5 saniye sonra yeniden başlatılacak..."
+      echo "🔄 5 saniye sonra kendini yeniden başlatıyor..."
       sleep 5
       curl -s https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/oto_restart.sh | bash
 
