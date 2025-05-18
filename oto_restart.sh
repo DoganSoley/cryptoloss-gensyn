@@ -5,6 +5,8 @@ cd ~/rl-swarm || exit 1
 # CTRL+C sinyali gelirse tüm alt süreçleri öldür ve çık
 trap_ctrl_c() {
   echo "🛑 CTRL+C alındı. Tüm süreçler sonlandırılıyor..."
+  pkill -9 -f train_single_gpu.py
+  pkill -9 -f p2pd
   pkill -P $$
   kill 0
   exit
@@ -56,12 +58,16 @@ while true; do
 
     if [ "$COUNT" -ge 15 ]; then
       echo "🚨 API key aktivasyonu 15+ kez denendi. Node yeniden başlatılıyor..."
+
+      # Süreçleri manuel gibi sert kapat
+      pkill -9 -f train_single_gpu.py
+      pkill -9 -f p2pd
       kill $NODE_PID
       wait $NODE_PID 2>/dev/null
       break
     fi
   done
 
-  echo "❌ Node kapandı. Bekleniyor... $(date)"
-  sleep 60
+  echo "❌ Node kapandı. 1 saniye sonra yeniden başlatılıyor... $(date)"
+  sleep 1
 done
