@@ -59,11 +59,12 @@ while true; do
     if [ "$COUNT" -ge 15 ]; then
       echo "🚨 API key aktivasyonu 15+ kez denendi. Node yeniden başlatılıyor..."
 
-      # Süreçleri manuel gibi sert kapat
+      # Tüm ilgili süreçleri anında öldür
       pkill -9 -f train_single_gpu.py
       pkill -9 -f p2pd
-      kill $NODE_PID
-      wait $NODE_PID 2>/dev/null
+      pkill -P $NODE_PID
+      kill -9 $NODE_PID 2>/dev/null
+
       break
     fi
   done
