@@ -63,27 +63,25 @@ while true; do
   sleep 10
   > node_output.log
 
-  # API Key bekleme kontrolü
+  # API Key bekleme + Killed kontrolü
   while kill -0 $NODE_PID 2>/dev/null; do
     sleep 10
 
-    COUNT=$(grep -c "Waiting for API key to be activated..." node_output.log)
+    COUNT_API_WAIT=$(grep -c "Waiting for API key to be activated..." node_output.log)
+    COUNT_KILLED=$(grep -c "Killed                  python -m hivemind_exp.gsm8k.train_single_gpu" node_output.log)
 
-    if [ "$COUNT" -ge 15 ]; then
-      echo "🚨 API key aktivasyonu 15+ kez denendi."
+    if [ "$COUNT_API_WAIT" -ge 15 ] || [ "$COUNT_KILLED" -ge 1 ]; then
+      echo "🚨 Gensyn node kritik durumda. Yeniden başlatılıyor..."
 
-      # 5 saniye beklemeden restart etme
       echo "🕓 5 saniye bekleniyor (manuel durdurma gibi)..."
       sleep 5
 
-      # Süreçleri manuel gibi öldür
       echo "🛑 Süreçler manuel gibi durduruluyor..."
       pkill -9 -f train_single_gpu.py
       pkill -9 -f p2pd
       pkill -P $NODE_PID
       kill -9 $NODE_PID 2>/dev/null
 
-      # 5 saniye daha bekle, sonra yeniden başlat
       echo "🔄 5 saniye sonra kendini yeniden başlatıyor..."
       sleep 5
       curl -s https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/oto_restart.sh | bash
