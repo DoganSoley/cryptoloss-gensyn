@@ -14,6 +14,13 @@ trap_ctrl_c() {
 }
 trap trap_ctrl_c SIGINT
 
+# 🔁 Her başlatmada yarn screen'i kapat ve yeniden başlat
+echo "🧹 Eski yarn screen varsa kapatılıyor..."
+screen -S yarn -X quit 2>/dev/null
+
+echo "🚀 Yeni yarn screen başlatılıyor..."
+screen -dmS yarn bash -c 'cd ~/rl-swarm/modal-login && fuser -k 3000/tcp; PORT=3000 yarn dev'
+
 # modal-login/temp-data klasörü yoksa oluştur
 mkdir -p modal-login/temp-data
 
