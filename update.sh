@@ -35,18 +35,16 @@ if [ ! -d "rl-swarm" ]; then
   exit 1
 fi
 
-echo "📁 rl-swarm klasörüne giriliyor..."
+
 cd rl-swarm || exit 1
 
 # 💣 Yerel değişiklikleri sil ve temizle
-echo "⚠️ Tüm yerel değişiklikler siliniyor..."
+
 git reset --hard HEAD
 
-echo "🧹 Takip edilmeyen dosya ve klasörler temizleniyor..."
 git clean -fd
 
 # ⬇️ En güncel kodu çek
-echo "⬇️ En güncel kod çekiliyor..."
 git pull
 
 cd ..
