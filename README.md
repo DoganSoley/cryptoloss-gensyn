@@ -169,3 +169,12 @@ Gensyn screen'indeyken ve rl-swarm klasöründeyken aşağıdaki kodu yapıştı
 curl -s https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/oto_restart.sh | bash
 ```
 
+
+# Güncelleme (28.05.2025)
+
+Sunucuya bağlanıp direkt aşağıdaki kodu yapıştırın ve daha sonrasında "screen -r gensyn" ile screen'e girip tekrar çalıştırın.(Çalıştırma kodu yukarıda yararlı kodlar kısmında var ister onu kullanın ister "Otomatik Restart" kullanın.)
+
+```
+curl -s https://raw.githubusercontent.com/DoganSoley/cryptoloss-gensyn/refs/heads/main/update.sh | bash
+```
+
