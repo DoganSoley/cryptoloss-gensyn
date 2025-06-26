@@ -27,6 +27,8 @@ screen -dmS gensyn bash -c '
 cd ~/rl-swarm || exit 1
 source .venv/bin/activate
 
+touch node_output.log  # Dosya yok hatasını engeller
+
 while true; do
   echo "🔁 Gensyn node başlatılıyor: $(date)"
 
@@ -42,11 +44,11 @@ while true; do
 
   sleep 30
 
-  # API key bekleniyorsa ve 30 saniyedir tıkanmışsa yeniden başlat
   stuck_check=0
   while kill -0 $NODE_PID 2>/dev/null; do
     sleep 5
-    if grep -q "Waiting for API key to be activated..." node_output.log; then
+
+    if [[ -f node_output.log ]] && grep -q "Waiting for API key to be activated..." node_output.log; then
       stuck_check=$((stuck_check + 1))
     else
       stuck_check=0
