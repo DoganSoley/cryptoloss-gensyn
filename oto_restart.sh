@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ~/rl-swarm || exit 1
-
 # 🐳 Node'u çalıştır
 docker compose run --rm --build -Pit swarm-cpu &
 
