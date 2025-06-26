@@ -2,76 +2,65 @@
 
 cd ~/rl-swarm || exit 1
 
-# CTRL+C sinyali gelirse her şeyi öldür
+# CTRL+C sinyali gelirse tüm süreçleri öldür
 trap_ctrl_c() {
   echo "🛑 CTRL+C alındı. Tüm süreçler sonlandırılıyor..."
   screen -S gensyn -X quit 2>/dev/null
-  docker ps -q | xargs -r docker stop
+  docker kill $(docker ps -q) 2>/dev/null
   pkill -P $$
   kill 0
   exit
 }
 trap trap_ctrl_c SIGINT
 
+# 🔁 Eski gensyn screen'i kapat
+echo "🧹 Eski gensyn screen varsa kapatılıyor..."
+screen -S gensyn -X quit 2>/dev/null
+
+# 🧠 modal-login-1 klasörünü user altına kopyala (isim değiştirerek)
+echo "📁 modal-login klasörü yenileniyor..."
+rm -rf user/modal-login
+cp -r modal-login-1 user/modal-login
+
+# 🚀 Yeni gensyn screen başlatılıyor...
+screen -dmS gensyn bash -c '
+cd ~/rl-swarm || exit 1
+source .venv/bin/activate
+
 while true; do
-  echo "🧹 Eski 'gensyn' screen varsa kapatılıyor..."
-  screen -S gensyn -X quit 2>/dev/null
+  echo "🔁 Gensyn node başlatılıyor: $(date)"
 
-  echo "🚀 Yeni 'gensyn' screen başlatılıyor..."
-  screen -dmS gensyn bash -c '
-    cd ~/rl-swarm
-
-    # RL Swarm başlatılıyor
-    docker compose run --build -Pit swarm-cpu 2>&1 | tee node_output.log &
-    DOCKER_PID=$!
-
-    # Log dosyasının oluşmasını bekle (maks. 10 saniye)
-    for i in {1..10}; do
-      if [ -f node_output.log ]; then
-        echo "📄 node_output.log bulundu."
-        break
-      fi
-      echo "⌛ Log dosyası bekleniyor... ($i saniye)"
-      sleep 1
-    done
-
-    # 10 saniye sonra modal-login klasörünü kopyala
+  (
     sleep 10
-    rm -rf ~/rl-swarm/user/modal-login
-    cp -r ~/rl-swarm/modal-login-1 ~/rl-swarm/user/modal-login
-    echo "✅ modal-login klasörü başarıyla değiştirildi."
+    cp -rf modal-login-1 user/modal-login
+    printf "n\n"
+    sleep 1
+    printf "\n"
+  ) | docker compose run --rm --build -Pit swarm-cpu 2>&1 | tee node_output.log &
 
-    # Otomatik cevaplar: n, Enter
-    {
-      sleep 1
-      echo "n"
-      sleep 1
-      echo ""
-    } | tee -a node_output.log
+  NODE_PID=$!
 
-    # Aktivasyon kontrolü (maksimum 30 saniye bekle)
-    echo "🔍 API anahtar aktivasyonu bekleniyor..."
-    for i in {1..30}; do
-      if grep -q "Waiting for API key to be activated..." node_output.log; then
-        sleep 1
-      else
-        echo "✅ Aktivasyon kontrolü tamamlandı."
-        exit 0
-      fi
-    done
+  sleep 30
 
-    echo "🚨 API anahtarı aktifleşmedi. Her şey yeniden başlatılıyor..."
+  # API key bekleniyorsa ve 30 saniyedir tıkanmışsa yeniden başlat
+  stuck_check=0
+  while kill -0 $NODE_PID 2>/dev/null; do
+    sleep 5
+    if grep -q "Waiting for API key to be activated..." node_output.log; then
+      stuck_check=$((stuck_check + 1))
+    else
+      stuck_check=0
+    fi
 
-    # Tüm süreçleri kapat
-    docker ps -q | xargs -r docker stop
-    screen -S gensyn -X quit 2>/dev/null
-    sleep 2
+    if [ "$stuck_check" -ge 6 ]; then
+      echo "⚠️ API key aktivasyonu tıkandı. Yeniden başlatılıyor..."
+      docker kill $(docker ps -q) 2>/dev/null
+      kill -9 $NODE_PID
+      break
+    fi
+  done
 
-    # Scripti yeniden başlat
-    bash ~/rl-swarm/gensyn_launcher.sh
-  '
-
-  # Ana döngü: eğer screen kapanırsa, tekrar başlatılır
-  echo "🔁 Screen döngüsü tamamlandı. 3 saniye sonra yeniden denenecek..."
-  sleep 3
+  echo "🔁 Node durdu. 2 saniye sonra yeniden başlatılıyor..."
+  sleep 2
 done
+'
