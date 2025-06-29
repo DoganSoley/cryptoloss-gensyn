@@ -1,35 +1,40 @@
 #!/bin/bash
 
 while true; do
-    echo "[INFO] Starting Gensyn node inside screen..."
+    echo "[INFO] Gensyn screen hazırlanıyor..."
 
-    # Eski screen varsa kapat
-    screen -X -S gensyn kill
+    # Eğer daha önce bir 'gensyn' screen açıksa öldür
+    if screen -list | grep -q "gensyn"; then
+        echo "[INFO] Eski gensyn screen kapatılıyor..."
+        screen -X -S gensyn quit
+        sleep 2
+    fi
 
-    # Docker container'ları durdur
-    docker kill $(docker ps -q) 2>/dev/null
-    docker rm $(docker ps -aq) 2>/dev/null
+    echo "[INFO] Gensyn screen başlatılıyor..."
 
-    # Gensyn screen başlat
+    # Screen içinde çalıştırılacak komutları hazırlıyoruz
     screen -dmS gensyn bash -c "
-        cd ~/rl-swarm
+        cd ~/rl-swarm || exit 1
 
-        # Nodeyi başlat, otomatik input vermek için printf kullan
-        printf 'n\n\n' | docker compose run --rm --build -Pit swarm-cpu &
+        echo '[INFO] Node başlatılıyor...'
+        printf 'n\n\n' | docker compose run --rm --build -Pit swarm-cpu
 
-        # modal-login-1 içeriğini modal-login içine kopyala
-        echo '[INFO] Waiting for modal-login-1 to appear...'
+        echo '[INFO] modal-login-1 klasörü bekleniyor...'
         while [ ! -d 'modal-login-1' ]; do
             sleep 2
         done
 
-        echo '[INFO] Copying modal-login-1 contents into user/modal-login...'
+        echo '[INFO] modal-login-1 içeriği user/modal-login klasörüne kopyalanıyor...'
         cp -r modal-login-1/* user/modal-login/
 
-        # Sonsuz bekle, screen logları akar
-        tail -f /dev/null
+        echo '[INFO] Node tamamlandı veya kapandı. Çıkılıyor...'
     "
 
-    echo "[INFO] Gensyn node stopped or crashed. Restarting in 5 seconds..."
+    # Node kapandığında docker container'ları temizle
     sleep 5
+    docker kill $(docker ps -q) 2>/dev/null
+    docker rm $(docker ps -aq) 2>/dev/null
+
+    echo "[INFO] 10 saniye sonra yeniden başlatılacak..."
+    sleep 10
 done
